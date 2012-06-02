@@ -9,6 +9,12 @@ class Parser {
 	Token * token;
 	istream * ifs;
 	void getToken();
+	bool more();
+
+	void parseList();
+	void parsePipeline();
+	void parseCommand();
+	void parseArgument();
 
 	public:
 	Parser();

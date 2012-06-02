@@ -15,6 +15,19 @@ void Parser::getToken()
 	token = nextToken(*ifs);
 }
 
+bool Parser::more()
+{
+	getToken();
+	if(token->getType() == Token::END)
+	{
+		return false;
+	}
+	else
+	{
+		return true;
+	}
+}
+
 void Parser::parseList()
 {
 	if(token->getType() == Token::EOL)
