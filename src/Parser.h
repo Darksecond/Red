@@ -8,6 +8,8 @@
 class Parser {
 	Token * token;
 	istream * ifs;
+	void getToken();
+
 	public:
 	Parser();
 	~Parser();

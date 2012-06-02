@@ -2,7 +2,7 @@ This is the BNF the parser will be based upon.
 
 
 ```BNF
-<list> ::= <pipeline> <nextpipeline>
+<list> ::= <pipeline> <nextpipeline> | EOL
 <nextpipeline> ::= e | SEQUENCE <list>
 <pipeline> ::= <simplecommand> <nextcommand>
 <nextcommand> ::= e | PIPE <pipeline>
