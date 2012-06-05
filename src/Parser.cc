@@ -27,6 +27,8 @@ void Parser::getToken()
 
 bool Parser::more()
 {
+	std::cout << "#" << std::flush;
+
 	getToken();
 	if(token->getType() == Token::END)
 	{
