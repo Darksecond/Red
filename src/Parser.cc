@@ -81,14 +81,6 @@ void Parser::parseCommand()
 	//<argument>
 	parseArgument();
 
-	//<nextargument>
-	if(token->getType() == Token::WORD 
-			|| token->getType() == Token::INPUT 
-			|| token->getType() == Token::OUTPUT 
-			|| token->getType() == Token::APPEND)
-	{
-		parseArgument();
-	}
 }
 
 void Parser::parseArgument()
@@ -140,5 +132,14 @@ void Parser::parseArgument()
 		{
 			perror("parse error on append");
 		}
+	}
+
+	//<nextargument>
+	if(token->getType() == Token::WORD 
+			|| token->getType() == Token::INPUT 
+			|| token->getType() == Token::OUTPUT 
+			|| token->getType() == Token::APPEND)
+	{
+		parseArgument();
 	}
 }

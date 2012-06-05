@@ -2,7 +2,7 @@ CC = clang++
 LD = clang++
 RM = rm -rf
 
-CFLAGS = -Wall
+CFLAGS = -Wall -g3
 LDFLAGS = 
 SOURCES = $(wildcard src/*.cc)
 OBJECTS = $(SOURCES:.cc=.o)

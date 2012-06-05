@@ -36,6 +36,11 @@ Command* Pipeline::addCommand(std::string word)
 
 void Pipeline::execute()
 {
+	
+	if(commands.size() == 0)
+	{
+		return;
+	}
 	if(commands.front()->isExit())
 	{
 		exit(0);

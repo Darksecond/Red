@@ -27,7 +27,10 @@ void Command::print()
 	{
 		arg_string += *it;
 	}
-	std::cout << name << " arguments: " << arg_string << " input: " << input << "\n";
+	std::cout << name << " arguments: " << arg_string 
+		<< " output: " << output 
+		<< " input: " << input
+		<< "\n" << std::flush;
 }
 
 void Command::execute()
@@ -35,9 +38,8 @@ void Command::execute()
 	//determine not-yet-set fd's
 	prepareFd();
 	dup2(fd[0], 0); //input
-	dup2(fd[1], 1);
+	dup2(fd[1], 1); //output
 	
-	//execute (TODO logic for exit?)
 	char **argv = new char*[args.size() + 2];
 	argv[0] = const_cast<char *>(name.c_str()); //first argument is the command itself
 	argv[args.size() + 1] = NULL; //null terminated array
@@ -81,25 +83,25 @@ void Command::addAppend(std::string word)
 
 void Command::prepareFd()
 {
-	if(fd[0] != -1)
+	if(fd[0] == -1)
 	{
 		if(!input.empty())
 		{
 			//input
-			fd[0] = open(input.c_str(), O_RDONLY|O_CLOEXEC);
+			fd[0] = open(input.c_str(), O_RDONLY);
 		} 
 	}
-	if(fd[1] != -1)
+	if(fd[1] == -1)
 	{
 		if(!append.empty())
 		{
 			//append
-			fd[1] = open(append.c_str(), O_WRONLY|O_CREAT|O_APPEND|O_CLOEXEC, S_IRUSR|S_IWUSR|S_IRGRP|S_IWGRP|S_IROTH);
+			fd[1] = open(append.c_str(), O_WRONLY|O_CREAT|O_APPEND, S_IRUSR|S_IWUSR|S_IRGRP|S_IWGRP|S_IROTH);
 		}
 		else if(!output.empty())
 		{
 			//output
-			fd[1] = open(output.c_str(), O_WRONLY|O_CREAT|O_APPEND|O_CLOEXEC, S_IRUSR|S_IWUSR|S_IRGRP|S_IWGRP|S_IROTH);
+			fd[1] = open(output.c_str(), O_WRONLY|O_CREAT|O_APPEND, S_IRUSR|S_IWUSR|S_IRGRP|S_IWGRP|S_IROTH);
 		}
 	}
 }
