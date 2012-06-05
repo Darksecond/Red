@@ -2,14 +2,20 @@
 #define __PARSER_H__
 
 #include "Token.h"
+#include "List.h"
+#include "Pipeline.h"
+#include "Command.h"
 
 #include <iostream>
 
 class Parser {
 	Token * token;
 	istream * ifs;
+	List* list;
+	Pipeline* currentPipe;
+	Command* currentCommand;
+
 	void getToken();
-	bool more();
 
 	void parseList();
 	void parsePipeline();
@@ -17,9 +23,10 @@ class Parser {
 	void parseArgument();
 
 	public:
-	Parser();
+	Parser(istream* ifs);
 	~Parser();
-	//vector<Pipe*> parse(istream & ifs);
+	void parse(List* uselist);
+	bool more();
 };
 
 #endif //_PARSER_H__

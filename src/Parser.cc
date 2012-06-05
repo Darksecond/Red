@@ -1,12 +1,22 @@
 #include "Parser.h"
+#include "List.h"
 
-Parser::Parser()
+//TODO replace all perror calls with throws.
+
+Parser::Parser(istream * istream)
 {
+	ifs = istream;
 }
 
 Parser::~Parser()
 {
 	delete token;
+}
+
+void Parser::parse(List* use_list)
+{
+	list = use_list;
+	parseList();
 }
 
 void Parser::getToken()
@@ -30,22 +40,16 @@ bool Parser::more()
 
 void Parser::parseList()
 {
-	if(token->getType() == Token::EOL)
+	//list is already created
+	currentPipe = list->addPipeline();
+	currentCommand = NULL;
+	parsePipeline();
+
+	//nextpipeline
+	if(token->getType() == Token::SEQUENCE)
 	{
-		//do nothing
-		//TODO is deze wel nodig?
-	}
-	else
-	{
-		parsePipeline();
-		
-		//nextpipeline
 		getToken();
-		if(token->getType() == Token::SEQUENCE)
-		{
-			getToken();
-			parseList();
-		}
+		parseList();
 	}
 }
 
@@ -54,7 +58,6 @@ void Parser::parsePipeline()
 	parseCommand();
 
 	//nextcommand
-	getToken();
 	if(token->getType() == Token::PIPE)
 	{
 		getToken();
@@ -68,20 +71,22 @@ void Parser::parseCommand()
 	if(token->getType() == Token::WORD)
 	{
 		//do something with token
+		currentCommand = currentPipe->addCommand(token->getText());
+		getToken();
 	}
 	else
 	{
-		//throw "parse error"
+		perror("parse error on command");
 	}
 	//<argument>
-	getToken();
 	parseArgument();
 
 	//<nextargument>
-	getToken();
-	if(token->getType() == Token::WORD)
+	if(token->getType() == Token::WORD 
+			|| token->getType() == Token::INPUT 
+			|| token->getType() == Token::OUTPUT 
+			|| token->getType() == Token::APPEND)
 	{
-		getToken();
 		parseArgument();
 	}
 }
@@ -91,6 +96,8 @@ void Parser::parseArgument()
 	if(token->getType() == Token::WORD)
 	{
 		//do something with token
+		currentCommand->addArg(token->getText());
+		getToken();
 	}
 	else if(token->getType() == Token::INPUT)
 	{
@@ -98,10 +105,12 @@ void Parser::parseArgument()
 		if(token->getType() == Token::WORD)
 		{
 			//do something with token
+			currentCommand->addInput(token->getText());
+			getToken();
 		}
 		else
 		{
-			//throw "parse error"
+			perror("parse error on input");
 		}
 	}
 	else if(token->getType() == Token::OUTPUT)
@@ -110,10 +119,12 @@ void Parser::parseArgument()
 		if(token->getType() == Token::WORD)
 		{
 			//do something with token
+			currentCommand->addOutput(token->getText());
+			getToken();
 		}
 		else
 		{
-			//throw "parse error"
+			perror("parse error on output");
 		}
 	}
 	else if(token->getType() == Token::APPEND)
@@ -122,10 +133,12 @@ void Parser::parseArgument()
 		if(token->getType() == Token::WORD)
 		{
 			//do something with token
+			currentCommand->addAppend(token->getText());
+			getToken();
 		}
 		else
 		{
-			//throw "parse error"
+			perror("parse error on append");
 		}
 	}
 }
