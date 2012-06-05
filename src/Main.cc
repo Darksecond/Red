@@ -1,25 +1,38 @@
+#include <signal.h>
+
 #include "Parser.h"
 #include "List.h"
 
+void do_signals();
+void sig_handler(int,siginfo_t *siginfo, void*);
+
+void do_signals()
+{
+	struct sigaction act;
+	 
+	memset (&act, '\0', sizeof(act)); // null out act struct, easier than setting every parameter to 0
+		 
+	/* Use the sa_sigaction field because the handles has two additional parameters */
+	act.sa_sigaction = &sig_handler;
+		 
+	/* The SA_SIGINFO flag tells sigaction() to use the sa_sigaction field, not sa_handler. */
+	act.sa_flags = SA_SIGINFO;
+	if (sigaction(SIGQUIT, &act, NULL) < 0) {
+		perror ("sigaction");
+	}
+}
+
+void sig_handler(int sig, siginfo_t *siginfo, void *context)
+{
+	if(sig == SIGQUIT)
+	{
+		exit(0);
+	}
+}
+
 int main(int argc, char * argv[])
 {
-	//Parser* p = new Parser(&std::cin);
-	//p->more();
-	//p->parse(new List());
-	
-	//Command* cmd = new Command("echo");
-	//cmd->addArg("hello, world");
-	//cmd->addArg("another test");
-	//cmd->setInputFd(0);
-	//cmd->setOutputFd(1);
-	//cmd->execute();
-
-	//while(p->more())
-	//{
-	//List* p->parse();
-	////...execute
-	//}
-	
+	do_signals();
 	Parser* p = new Parser(&std::cin);
 	while(p->more())
 	{
@@ -27,7 +40,7 @@ int main(int argc, char * argv[])
 		p->parse(list);
 		//list->print();
 		list->execute();
-		//delete list; //SOME ERROR HERE?
+		delete list; //SOME ERROR HERE?
 	}
 	return 0;
 }

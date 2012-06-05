@@ -17,7 +17,7 @@ Command::~Command()
 
 bool Command::isExit()
 {
-	return name == "exit";
+	return name == "exit" || name == "logout";
 }
 
 void Command::print()
