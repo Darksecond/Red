@@ -2,7 +2,7 @@ Tests
 =====
 
 Of course a project would not be complete without some testing. 
-These tests were performed on version 2faa0ece1ccd670161f96826aa7d699e71c92a22
+These tests were performed on SHA: 2faa0ece1ccd670161f96826aa7d699e71c92a22
 
 Simple commands
 ---------------
