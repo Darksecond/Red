@@ -38,7 +38,7 @@ Of course there are several limitations and gotcha's. Some of which are:
  * The 'exit' or 'logout' command can only be used as the first command in a pipe.
    
    However, it can be used in a sequence (;)
-*  output, input and append redirections will not be used on a command if it's in the middle of a pipe (|).
+ *  output, input and append redirections will not be used on a command if it's in the middle of a pipe (|).
 
 Examples
 --------
