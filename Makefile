@@ -7,7 +7,7 @@ LDFLAGS =
 SOURCES = $(wildcard src/*.cc)
 OBJECTS = $(SOURCES:.cc=.o)
 HEADERS = $(wildcard src/*.h)
-TARGET = shell
+TARGET = red
 
 .PHONY: clean all
 
