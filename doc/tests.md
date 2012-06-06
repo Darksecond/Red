@@ -95,7 +95,7 @@ Test passed.
  * * *
 
 ```sh
-cat Makefile >> tepmfile
+cat Makefile >> tempfile
 ```
 Expected result: the file 'tempfile' will contain the contents of 'Makefile', and it will not overwrite any existing data.
 
