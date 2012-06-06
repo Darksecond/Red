@@ -37,10 +37,22 @@ int main(int argc, char * argv[])
 	while(p->more())
 	{
 		List* list = new List();
-		p->parse(list);
-		//list->print();
-		list->execute();
-		delete list; //SOME ERROR HERE?
+
+		try
+		{
+			p->parse(list);
+			list->execute();
+		}
+		catch(const std::string& s)
+		{
+			std::cerr << s << "\n" << std::flush;
+		}
+		catch(const char* s)
+		{
+			std::cerr << s << "\n" << std::flush;
+		}
+
+		delete list;
 	}
 	return 0;
 }

@@ -15,7 +15,6 @@ class Pipeline
 	~Pipeline();
 	Command* addCommand(std::string word);
 	void execute();
-	void print();
 };
 
 #endif //_PIPELINE_H__

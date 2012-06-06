@@ -18,15 +18,6 @@ Pipeline::~Pipeline()
 	}
 }
 
-void Pipeline::print()
-{
-	for( std::vector<Command*>::const_iterator it = commands.begin(); it != commands.end(); ++it)
-	{
-		std::cout << "Command:\n";
-		(*it)->print();
-	}
-}
-
 Command* Pipeline::addCommand(std::string word)
 {
 	Command * cmd = new Command(word);
@@ -41,6 +32,9 @@ void Pipeline::execute()
 	{
 		return;
 	}
+
+	//the command is 'exit' or 'logout' so exit
+	//POSSIBLETODO: abstract this to a seperate 'ExitCommand' or something, this would allow for arguments
 	if(commands.front()->isExit())
 	{
 		exit(0);
@@ -55,7 +49,6 @@ void Pipeline::execute()
 		for( std::vector<Command*>::reverse_iterator it = commands.rbegin(); it != commands.rend(); ++it)
 		{
 			//prepare pipes
-			//...
 			if(*it != commands.front())
 			{
 				pipe(input);
@@ -89,7 +82,7 @@ void Pipeline::execute()
 				}
 				(*it)->execute();
 				//we only reach here if the command is bad
-				std::cout << "command is bad\n" << std::flush;
+				throw "command is bad";
 				exit(-1);
 			}
 		}

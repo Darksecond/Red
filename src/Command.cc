@@ -20,19 +20,6 @@ bool Command::isExit()
 	return name == "exit" || name == "logout";
 }
 
-void Command::print()
-{
-	std::string arg_string = "";
-	for( std::vector<std::string>::const_iterator it = args.begin(); it != args.end(); ++it)
-	{
-		arg_string += *it;
-	}
-	std::cout << name << " arguments: " << arg_string 
-		<< " output: " << output 
-		<< " input: " << input
-		<< "\n" << std::flush;
-}
-
 void Command::execute()
 {
 	//determine not-yet-set fd's
@@ -48,7 +35,7 @@ void Command::execute()
 
 	execvp(argv[0], argv);
 
-	perror("could not execute command");
+	throw "command not found: " + name;
 }
 
 void Command::setInputFd(int input)

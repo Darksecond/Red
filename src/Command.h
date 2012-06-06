@@ -18,7 +18,6 @@ class Command
 	public:
 	Command(std::string word);
 	~Command();
-	void print();
 	void execute();
 	void addArg(std::string word);
 	void addInput(std::string word);

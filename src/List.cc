@@ -31,12 +31,3 @@ void List::execute()
 	}
 	pipes.clear();
 }
-
-void List::print()
-{
-	for( std::vector<Pipeline*>::const_iterator it = pipes.begin(); it != pipes.end(); ++it)
-	{
-		std::cout << "pipeline:\n";
-		(*it)->print();
-	}
-}

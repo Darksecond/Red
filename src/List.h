@@ -14,7 +14,6 @@ class List
 	~List();
 	Pipeline* addPipeline();
 	void execute();
-	void print();
 };
 
 #endif //_LIST_H__

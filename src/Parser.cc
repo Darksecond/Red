@@ -1,8 +1,6 @@
 #include "Parser.h"
 #include "List.h"
 
-//TODO replace all perror calls with throws.
-
 Parser::Parser(istream * istream)
 {
 	ifs = istream;
@@ -78,7 +76,7 @@ void Parser::parseCommand()
 	}
 	else
 	{
-		perror("parse error on command");
+		throw "parse error on command";
 	}
 	//<argument>
 	parseArgument();
@@ -104,7 +102,7 @@ void Parser::parseArgument()
 		}
 		else
 		{
-			perror("parse error on input");
+			throw "parse error on input";
 		}
 	}
 	else if(token->getType() == Token::OUTPUT)
@@ -118,7 +116,7 @@ void Parser::parseArgument()
 		}
 		else
 		{
-			perror("parse error on output");
+			throw "parse error on output";
 		}
 	}
 	else if(token->getType() == Token::APPEND)
@@ -132,7 +130,7 @@ void Parser::parseArgument()
 		}
 		else
 		{
-			perror("parse error on append");
+			throw "parse error on append";
 		}
 	}
 
