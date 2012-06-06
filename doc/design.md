@@ -3,6 +3,12 @@ Design
 
 Of course there was some design involved in creating the shell. 
 
+
+Parser
+------
+
+The parser is directly translated from the BNF. it's a simple LL(1) parser.
+
 Main code flow
 --------------
 
