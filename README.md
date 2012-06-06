@@ -25,7 +25,7 @@ Some of it's features are:
  * Support for output redirection (**>**)
  * Support for output redirection in append mode (**>>**)
  * Support for ^D to quickly exit.
- * Support for exit and logout commands to exit.
+ * Support for exit and logout commands.
 
 
 Limitations
