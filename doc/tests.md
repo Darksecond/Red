@@ -129,4 +129,39 @@ Test passed.
 Sequences
 ---------
 
-...
+```sh
+echo a ; echo b
+```
+
+Expected result:
+```
+a
+b
+```
+
+Received result:
+```
+a
+b
+```
+Test passed.
+
+ * * *
+
+```sh
+echo 'exiting...' ; exit
+```
+
+Expected result:
+```
+exiting...
+<shell quits>
+```
+
+Received result:
+```
+exiting...
+<shell quits>
+```
+
+Test passed.
