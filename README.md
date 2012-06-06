@@ -37,6 +37,8 @@ echo Hello, World!
 ```
 This example will print out 'Hello, World!' by running the 'echo' command.
 
+ * * * 
+
 ```sh
 cat < README.md | grep exit | less
 ```
