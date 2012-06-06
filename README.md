@@ -19,7 +19,7 @@ Features
 The Red Shell supports multiple features, many of which are reminiscent of more commonly used shells like bash or zsh.
 
 Some of it's features are:
- * Support for pipes (_|_)
+ * Support for pipes (**|**)
  * Support for multiple command sequences on a single line (**;**)
  * Support for input redirection (**<**)
  * Support for output redirection (**>**)
