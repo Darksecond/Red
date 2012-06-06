@@ -19,11 +19,11 @@ Features
 The Red Shell supports multiple features, many of which are reminiscent of more commonly used shells like bash or zsh.
 
 Some of it's features are:
- * Support for pipes (|)
- * Support for multiple command sequences on a single line (;)
- * Support for input redirection (<)
- * Support for output redirection (>)
- * Support for output redirection in append mode (>>)
+ * Support for pipes (_|_)
+ * Support for multiple command sequences on a single line (**;**)
+ * Support for input redirection (**<**)
+ * Support for output redirection (**>**)
+ * Support for output redirection in append mode (**>>**)
  * Support for ^D to quickly exit.
  * Support for exit and logout commands to exit.
 
@@ -33,12 +33,12 @@ Limitations
 
 Of course there are several limitations and gotcha's. Some of which are:
 
- * Output redirection in append mode (>>) will always take precedence over normal output redirection (>)
+ * Output redirection in append mode (**>>**) will always take precedence over normal output redirection (**>**)
  * If there are multiple output, input, or append redirections only the last one specified will be used.
  * The 'exit' or 'logout' command can only be used as the first command in a pipe.
    
-   However, it can be used in a sequence (;)
- *  output, input and append redirections will not be used on a command if it's in the middle of a pipe (|).
+   However, it can be used in a sequence (**;**)
+ *  output, input and append redirections will not be used on a command if it's in the middle of a pipe (**|**).
 
 Examples
 --------
