@@ -3,6 +3,8 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include <iostream>
+#include <sys/wait.h>
+#include <stdlib.h>
 
 #include "Pipeline.h"
 

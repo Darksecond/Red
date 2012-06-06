@@ -1,4 +1,7 @@
 #include <signal.h>
+#include <string.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 #include "Parser.h"
 #include "List.h"
