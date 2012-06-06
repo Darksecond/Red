@@ -24,3 +24,30 @@ Some of it's features are:
  * Support for input redirection (<)
  * Support for output redirection (>)
  * Support for output redirection in append mode (>>)
+ * Support for ^D to quickly exit.
+ * Support for exit and logout commands to exit.
+
+Examples
+--------
+
+Here are some examples listed to get you started using the Red Shell.
+
+```sh
+echo Hello, World!
+```
+This example will print out 'Hello, World!' by running the 'echo' command.
+
+```sh
+cat < README.md | grep exit | less
+```
+In this example the 'cat' program will be called with the 'README.md' file as it's input redirector. The output will be piped to 'grep' with 'exit' as it's argument. Next the output of grep will be piped to 'less' which will display it on the screen.
+The output should be as following:
+```
+ * Support for ^D to quickly exit.
+ * Support for exit and logout commands to exit.
+```
+
+More Documentation
+-------------
+
+You can find more documentation in the 'doc' directory. Amongst the files found there is the BNF used to develop the parser used.
